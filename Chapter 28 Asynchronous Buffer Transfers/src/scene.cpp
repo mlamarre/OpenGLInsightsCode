@@ -26,8 +26,6 @@ THE SOFTWARE.
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/swizzle.hpp>
-#include <glm/gtx/verbose_operator.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/quaternion.hpp>
 
@@ -117,7 +115,8 @@ void scene::load_and_init_shaders(const base::source_location &loc)
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 inline glm::vec4 normalize_plane(const glm::vec4 &p) {
-	return p*(1.0f/length(p.swizzle(X,Y,Z)));
+	glm::vec3 xyz = p.xyz;
+	return p*(1.0f/length(xyz));
 }
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

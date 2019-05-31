@@ -237,7 +237,7 @@ void WINAPI gl_debug_msg_proc_arb(
 	GLenum severity,
 	GLsizei length,
 	const GLchar *message,
-	GLvoid *userParam)
+	const GLvoid *userParam)
 {
 	userParam;
 	//message;

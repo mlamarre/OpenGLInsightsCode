@@ -30,6 +30,7 @@ THE SOFTWARE.
 
 #include <iostream>
 
+#define GLM_SWIZZLE
 #include <glm/glm.hpp>
 
 using namespace glm;
