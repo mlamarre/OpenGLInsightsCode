@@ -48,7 +48,7 @@ void base::font::load(const base::source_location &loc, const char *filename)
         throw base::exception(loc.to_str())
 			<< "This is not the BMF file or it's a bad version \"" << filename << "\"!";
 
-	const unsigned char* block_id=buf+sizeof(_BMFInfo);
+	const unsigned char* block_id=buf+4; // header had 4 bytes
 	const unsigned char* const end=buf+_data.size();
 
 	while(block_id<end) {
@@ -87,7 +87,7 @@ void base::font::load(const base::source_location &loc, const char *filename)
 			block_id += 4;
 	}
 	
-	const CharInfo *e = _charsBlock->chars + (_charsBlock->blockSize - 4) / sizeof(CharInfo);
+	const CharInfo *e = _charsBlock->chars + (_charsBlock->blockSize - 4) / 20; // CharInfo has 20 bytes - can't use sizeof because of padding
 
 	for(const CharInfo *i = _charsBlock->chars; i !=e; ++i)
 		_chars.insert(std::pair<unsigned int, const CharInfo*>(i->id, i));
